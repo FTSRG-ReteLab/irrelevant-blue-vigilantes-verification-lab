@@ -10,20 +10,6 @@ public class TrainControllerImpl implements TrainController {
 	private int referenceSpeed = 0;
 	private int speedLimit = 0;
 
-	public TrainControllerImpl() {
-		new java.util.Timer().schedule(
-				new java.util.TimerTask() {
-					@Override
-					public void run() {
-						followSpeed();
-					}
-				},
-				1000
-		);
-
-
-	}
-
 	@Override
 	public void followSpeed() {
 		if (referenceSpeed < 0) {
@@ -38,6 +24,20 @@ public class TrainControllerImpl implements TrainController {
 
 		enforceSpeedLimit();
 	}
+  
+  // the solution was deleting the duplicated constructor
+	public TrainControllerImpl() {
+        new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        followSpeed();
+                    }
+                },
+                5000
+        );
+
+    }
 
 	@Override
 	public int getReferenceSpeed() {
@@ -61,8 +61,5 @@ public class TrainControllerImpl implements TrainController {
 	public void setJoystickPosition(int joystickPosition) {
 		this.step = joystickPosition;		
 	}
-
-
-
 
 }
