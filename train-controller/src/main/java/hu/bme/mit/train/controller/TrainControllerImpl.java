@@ -2,6 +2,8 @@ package hu.bme.mit.train.controller;
 
 import hu.bme.mit.train.interfaces.TrainController;
 
+import java.util.Timer;
+
 public class TrainControllerImpl implements TrainController {
 
 	private int step = 0;
@@ -22,6 +24,20 @@ public class TrainControllerImpl implements TrainController {
 
 		enforceSpeedLimit();
 	}
+  
+  // the solution was deleting the duplicated constructor
+	public TrainControllerImpl() {
+        new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        followSpeed();
+                    }
+                },
+                5000
+        );
+
+    }
 
 	@Override
 	public int getReferenceSpeed() {
