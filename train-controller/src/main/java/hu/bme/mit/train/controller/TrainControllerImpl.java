@@ -22,6 +22,18 @@ public class TrainControllerImpl implements TrainController {
 
 		enforceSpeedLimit();
 	}
+	public TrainControllerImpl() {
+        new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        followSpeed();
+                    }
+                },
+                5000
+        );
+
+    }
 
 	@Override
 	public int getReferenceSpeed() {
@@ -45,5 +57,6 @@ public class TrainControllerImpl implements TrainController {
 	public void setJoystickPosition(int joystickPosition) {
 		this.step = joystickPosition;		
 	}
+
 
 }
